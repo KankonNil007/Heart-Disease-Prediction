@@ -29,7 +29,6 @@
 
 Experience the fully interactive diagnostic interface live in your browser:
 
-> [!TIP]
 > ### 🏥 **[Access CardioShield Web Dashboard](https://heart-disease-prediction-z7ub.onrender.com/)**
 > Run immediate patient predictions, experience real-time radial gauge color transitions, and explore the API interface live on Render.
 
