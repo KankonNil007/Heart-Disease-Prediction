@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CardioShield provides heart disease prediction using a machine learning K-Nearest Neighbors (KNN) model.">
+    <title>Heart Disease Risk Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Form Panel -->
+        <div class="card">
+            <div class="header">
+                <div class="logo-area">
+                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <span style="font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; color: var(--primary)">CardioShield</span>
+                </div>
+                <h1>Heart Disease Risk Analyzer</h1>
+                <p>Provide patient clinical diagnostics to evaluate cardiovascular disease likelihood.</p>
+            </div>
+
+            <form id="predictionForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-grid">
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label for="Age">Age <span class="info-icon" title="Age in years">i</span></label>
+                        <input type="number" id="Age" name="Age" min="1" max="120" value="54" required>
+                    </div>
+
+                    <!-- Sex -->
+                    <div class="form-group">
+                        <label for="Sex">Sex</label>
+                        <select id="Sex" name="Sex" required>
+                            <option value="M" selected>Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+
+                    <!-- RestingBP -->
+                    <div class="form-group">
+                        <label for="RestingBP">Resting Blood Pressure <span class="info-icon" title="Resting blood pressure in mm Hg on admission to the hospital">i</span></label>
+                        <input type="number" id="RestingBP" name="RestingBP" min="50" max="250" value="130" required>
+                    </div>
+
+                    <!-- Cholesterol -->
+                    <div class="form-group">
+                        <label for="Cholesterol">Serum Cholesterol <span class="info-icon" title="Serum cholesterol in mg/dl">i</span></label>
+                        <input type="number" id="Cholesterol" name="Cholesterol" min="50" max="600" value="220" required>
+                    </div>
+
+                    <!-- FastingBS -->
+                    <div class="form-group">
+                        <label for="FastingBS">Fasting Blood Sugar</label>
+                        <select id="FastingBS" name="FastingBS" required>
+                            <option value="0" selected>&le; 120 mg/dl</option>
+                            <option value="1">&gt; 120 mg/dl</option>
+                        </select>
+                    </div>
+
+                    <!-- MaxHR -->
+                    <div class="form-group">
+                        <label for="MaxHR">Max Heart Rate <span class="info-icon" title="Maximum heart rate achieved during exercise">i</span></label>
+                        <input type="number" id="MaxHR" name="MaxHR" min="50" max="220" value="140" required>
+                    </div>
+
+                    <!-- ChestPainType -->
+                    <div class="form-group">
+                        <label for="ChestPainType">Chest Pain Type</label>
+                        <select id="ChestPainType" name="ChestPainType" required>
+                            <option value="ASY" selected>Asymptomatic (ASY)</option>
+                            <option value="ATA">Atypical Angina (ATA)</option>
+                            <option value="NAP">Non-Anginal Pain (NAP)</option>
+                            <option value="TA">Typical Angina (TA)</option>
+                        </select>
+                    </div>
+
+                    <!-- RestingECG -->
+                    <div class="form-group">
+                        <label for="RestingECG">Resting ECG Results</label>
+                        <select id="RestingECG" name="RestingECG" required>
+                            <option value="Normal" selected>Normal</option>
+                            <option value="ST">ST-T wave abnormality</option>
+                            <option value="LVH">Left ventricular hypertrophy</option>
+                        </select>
+                    </div>
+
+                    <!-- ExerciseAngina -->
+                    <div class="form-group">
+                        <label for="ExerciseAngina">Exercise Induced Angina</label>
+                        <select id="ExerciseAngina" name="ExerciseAngina" required>
+                            <option value="N" selected>No</option>
+                            <option value="Y">Yes</option>
+                        </select>
+                    </div>
+
+                    <!-- Oldpeak -->
+                    <div class="form-group">
+                        <label for="Oldpeak">ST Depression (Oldpeak) <span class="info-icon" title="ST depression induced by exercise relative to rest">i</span></label>
+                        <input type="number" id="Oldpeak" name="Oldpeak" min="-5" max="10" step="0.1" value="1.0" required>
+                    </div>
+
+                    <!-- ST_Slope -->
+                    <div class="form-group full-width">
+                        <label for="ST_Slope">Slope of Peak Exercise ST Segment</label>
+                        <select id="ST_Slope" name="ST_Slope" required>
+                            <option value="Flat" selected>Flat</option>
+                            <option value="Up">Upsloping</option>
+                            <option value="Down">Downsloping</option>
+                        </select>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-predict" id="submitBtn">
+                        <span class="btn-text">Analyze Patient Risk</span>
+                        <div class="spinner"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="card results-card">
+            <!-- Default / Empty State -->
+            <div id="placeholderState" class="placeholder-state">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <p>Ready for Diagnostics. Input the patient values on the left and run analysis to calculate risk index.</p>
+            </div>
+
+            <!-- Calculated State -->
+            <div id="resultState" class="result-state">
+                <div class="gauge-container">
+                    <svg class="gauge-svg" viewBox="0 0 160 160">
+                        <circle class="gauge-bg" cx="80" cy="80" r="70" />
+                        <circle class="gauge-value" id="gaugeCircle" cx="80" cy="80" r="70" />
+                    </svg>
+                    <div class="gauge-text">
+                        <span class="gauge-percentage" id="riskPercent">0.0%</span>
+                        <span class="gauge-label">Risk index</span>
+                    </div>
+                </div>
+
+                <div class="badge" id="riskBadge">LOW RISK</div>
+                <h3 class="result-title" id="resultTitle">Patient Health Normal</h3>
+                <p class="result-desc" id="resultDesc">The indicators align with a normal profile. Periodic check-ups are always encouraged to maintain good cardiac health.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
