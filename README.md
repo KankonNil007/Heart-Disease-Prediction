@@ -48,6 +48,7 @@
 │   └── Columns_HeartDiease.pkl # Expected input dataframe column sequences
 └── static/                     # 🌐 Frontend web assets
     ├── index.html              # Core client dashboard structure
+    ├── favicon.png             # Custom heart shield favicon asset
     ├── css/
     │   └── style.css           # Custom glassmorphism variables, utility classes, and keyframes
     └── js/

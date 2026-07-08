@@ -60,3 +60,8 @@ def predict(request: PredictRequest):
 @app.get("/")
 def read_root():
     return FileResponse("static/index.html")
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return FileResponse("static/favicon.png")
+
