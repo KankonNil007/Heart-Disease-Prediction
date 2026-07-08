@@ -25,6 +25,16 @@
 
 ---
 
+## 🌐 Live Deployment
+
+Experience the fully interactive diagnostic interface live in your browser:
+
+> [!TIP]
+> ### 🏥 **[Access CardioShield Web Dashboard](https://heart-disease-prediction-z7ub.onrender.com/)**
+> Run immediate patient predictions, experience real-time radial gauge color transitions, and explore the API interface live on Render.
+
+---
+
 ## ✨ Key Features
 
 *   **🎨 Premium Glassmorphism Aesthetics:** Clean, high-contrast dark theme utilizing `backdrop-filter: blur(24px)` with high-contrast color tokens, curated typography, and an animated heart logo with drop-shadow pulse states.
@@ -128,10 +138,6 @@ Ensure you have **Python 3.8+** installed.
 
 After starting up, open the responsive UI dashboard locally at:
 👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
-
-Or access the live deployment directly online:
-👉 **[CardioShield Live Diagnostics Dashboard](https://heart-disease-prediction-z7ub.onrender.com/)**
-
 
 ---
 
