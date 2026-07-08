@@ -6,7 +6,9 @@
 [![Python Version](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-v0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-v1.3+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Deployed on Render](https://img.shields.io/badge/Deployed%20on-Render-9C27B0?style=for-the-badge&logo=render&logoColor=white)](https://heart-disease-prediction-z7ub.onrender.com/)
 [![License](https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
 
 <p align="center">
   A premium, high-fidelity clinical diagnostics platform powered by a trained <b>K-Nearest Neighbors (KNN)</b> classifier. Predict patient cardiac risk profiles instantly through a modern responsive dark-mode dashboard.
@@ -124,8 +126,12 @@ Ensure you have **Python 3.8+** installed.
     uvicorn main:app --reload
     ```
 
-After starting up, open the responsive UI dashboard at:
+After starting up, open the responsive UI dashboard locally at:
 👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+
+Or access the live deployment directly online:
+👉 **[CardioShield Live Diagnostics Dashboard](https://heart-disease-prediction-z7ub.onrender.com/)**
+
 
 ---
 
